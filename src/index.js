@@ -1,32 +1,21 @@
 module.exports = function check(str, bracketsConfig) {
-    // сревниваем 2 элемента с массивом, если не совпадают, то удаляем.
-    // bracketsConfig массив 
-    // 
 
     //
-    let checkArr = '';
-    let checkStr = '';
-    let result = '';
+    let strOfArr = '';
 
+    let result = str;
+    for (var j = 0; j < str.length; j++) {
+        for (var i = 0; i < bracketsConfig.length; i++) {
 
-    for (var i = 0; i < bracketsConfig.length; i++) {
-        for (var j = 0; j < bracketsConfig[i].length; j++) {
-            checkStr = str[i] + str[i += 1];
-            i -= 1;
-
-            checkArr = bracketsConfig[i][j] + bracketsConfig[i][j += 1];
-            j -= 1;
-
-            if (checkStr == checkArr) {
-                result = str.substring(0, i) + str.substring(i = +2)
-                i -= 2;
-            } else {
-                result = str
+            strOfArr = bracketsConfig[i][0] + bracketsConfig[i][1];
+            let index = result.indexOf(strOfArr);
+            if (index >= 0) {
+                result = result.substring(0, index) + result.substring(index += 2)
             }
 
         }
-
     }
+
     if (result.length == 0) {
         return true
     } else {
